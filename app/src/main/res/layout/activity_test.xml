@@ -53,7 +53,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/input_answer"
+                android:id="@+id/input_answer1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
