@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="설정"
+        android:iconSpaceReserved="false">
+        <ListPreference
+            android:entries="@array/array_grade"
+            android:entryValues="@array/array_grade"
+            android:key="user_grade"
+            android:title="학년 설정"
+            android:summary="사용자의 학년을 설정합니다." />
+        <ListPreference
+            android:entries="@array/array_problem_nums"
+            android:entryValues="@array/array_problem_nums"
+            android:key="user_problems_nums"
+            android:title="문제 수"
+            android:summary="한 번에 풀 문제 수를 설정합니다." />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="테마 설정">
+        <SwitchPreference
+            android:key="app_theme"
+            android:title="다크 모드 활성화"
+            android:summary="어플을 라이트 테마가 아닌 어두운 테마로 적용합니다."/>
+    </PreferenceCategory>
+</PreferenceScreen>
