@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import kr.ac.kumoh.s20170419.everydaymath.databinding.ActivityAnalysisBinding
 
 class AnalysisActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class AnalysisActivity : AppCompatActivity() {
         setContentView(view.root)
 
         setSupportActionBar(view.appToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val dataSet = (1..50).toList()
         view.recyclerView.adapter = SampleAdapter(dataSet)
     }
