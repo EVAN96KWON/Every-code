@@ -8,13 +8,21 @@
     android:background="@color/design_default_color_primary"
     tools:context=".SettingsActivity"
     android:orientation="vertical">
-
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/app_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        app:titleCentered="true"
+        app:titleTextColor="@color/white"
+        android:elevation="0dp">
+    </com.google.android.material.appbar.MaterialToolbar>
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <TextView
             android:id="@+id/tmp_text"
             android:layout_width="wrap_content"
@@ -22,7 +30,8 @@
             android:text="설정"
             android:textColor="@color/white"
             android:textSize="30dp"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginVertical="20dp"
             />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottomConstraintLayout"
