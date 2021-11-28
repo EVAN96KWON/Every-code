@@ -17,7 +17,7 @@ class AnalysisActivity : AppCompatActivity() {
 
         setSupportActionBar(view.appToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val dataSet = (1..50).toList()
+        val dataSet = (1..15).toList()
         view.recyclerView.adapter = SampleAdapter(dataSet)
     }
 
