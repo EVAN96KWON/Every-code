@@ -3,17 +3,21 @@ package kr.ac.kumoh.s20170419.everydaymath
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 class SettingsActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        val appToolbar = findViewById<Toolbar>(R.id.app_actionbar)
+        setSupportActionBar(appToolbar)
 
         // 유저 정보 불러오기
 //        val sps = PreferenceManager.getDefaultSharedPreferences(this)
 //        val userGrade = sps.getString("user_grade", "")
 //        val userProblemsNums = sps.getString("user_problems_nums", "")
 //        val appTheme = sps.getBoolean("app_theme", false)
+
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.elevation = 0F

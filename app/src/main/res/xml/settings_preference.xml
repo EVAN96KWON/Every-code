@@ -3,6 +3,11 @@
     <PreferenceCategory
         android:title="설정"
         android:iconSpaceReserved="false">
+        <EditTextPreference
+            android:key="user_nickname"
+            android:title="닉네임 설정"
+            android:summary="어플에서 사용할 닉네임을 설정합니다."
+            android:dialogTitle="닉네임 설정"/>
         <ListPreference
             android:entries="@array/array_grade"
             android:entryValues="@array/array_grade"
