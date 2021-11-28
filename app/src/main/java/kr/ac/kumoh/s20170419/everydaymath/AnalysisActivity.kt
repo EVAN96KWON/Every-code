@@ -3,8 +3,6 @@ package kr.ac.kumoh.s20170419.everydaymath
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBar
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import kr.ac.kumoh.s20170419.everydaymath.databinding.ActivityAnalysisBinding
 
 class AnalysisActivity : AppCompatActivity() {
@@ -18,7 +16,7 @@ class AnalysisActivity : AppCompatActivity() {
         setSupportActionBar(view.appToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val dataSet = (1..15).toList()
-        view.recyclerView.adapter = SampleAdapter(dataSet)
+        view.recyclerView.adapter = AnalysisChartAdapter(dataSet)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

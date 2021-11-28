@@ -1,5 +1,6 @@
 package kr.ac.kumoh.s20170419.everydaymath
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val userProblemsNums = sps.getString("user_problems_nums", "")
         val appTheme = sps.getBoolean("app_theme", false)
 
-        view.main1111.text = "$userGrade ${userNickname}님 안녕하세요!\n" +
+        view.main1111.text = "$userGrade ${userNickname}님 안녕하세요!" +
                 "현재 문제수 $userProblemsNums, 다크 테마 $appTheme 입니다."
 
         view.main1131.setOnClickListener {
