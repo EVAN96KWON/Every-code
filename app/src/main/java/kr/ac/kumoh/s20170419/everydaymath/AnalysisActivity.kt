@@ -1,8 +1,10 @@
 package kr.ac.kumoh.s20170419.everydaymath
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.annotation.RequiresApi
 import kr.ac.kumoh.s20170419.everydaymath.databinding.ActivityAnalysisBinding
 
 class AnalysisActivity : AppCompatActivity() {
@@ -15,7 +17,9 @@ class AnalysisActivity : AppCompatActivity() {
 
         setSupportActionBar(view.appToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val dataSet = (1..15).toList()
+//        val dataSet = (1..15).toList()
+        val am = AnalysisManager(UserLogManager(filesDir).readTextFile())
+        val dataSet = listOf<Any>(am.getCurrentGrades(), am.getProblemNums(), am.getTimes())
         view.recyclerView.adapter = AnalysisChartAdapter(dataSet)
     }
 

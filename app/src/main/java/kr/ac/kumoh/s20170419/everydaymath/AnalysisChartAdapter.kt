@@ -16,7 +16,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 
 
 class AnalysisChartAdapter(
-    private val dataSet: List<Int>
+    private val dataSet: List<Any>
 ) : RecyclerView.Adapter<AnalysisChartAdapter.ChartViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChartViewHolder {
@@ -35,7 +35,10 @@ class AnalysisChartAdapter(
             // 여기서 엔트리 리스트 작성
             when (position) {
                 0 ->  {
-                    holder.title.text = "0번째"
+                    holder.title.text = "주간 성적"
+                    for (i in dataSet) {
+
+                    }
                     entryList.add(BarEntry(0f,2f))
                     entryList.add(BarEntry(1f,3f))
                     entryList.add(BarEntry(2f,4f))
@@ -45,7 +48,17 @@ class AnalysisChartAdapter(
                 }
 
                 1 -> {
-                    holder.title.text = "1번째"
+                    holder.title.text = "선호하는 문제 수"
+                    entryList.add(BarEntry(0f,1f))
+                    entryList.add(BarEntry(1f,5f))
+                    entryList.add(BarEntry(2f,8f))
+                    entryList.add(BarEntry(3f,3f))
+                    entryList.add(BarEntry(4f,6f))
+                    entryList.add(BarEntry(5f,2f))
+                }
+
+                2 -> {
+                    holder.title.text = "한 문제당 걸리는 시간"
                     entryList.add(BarEntry(0f,1f))
                     entryList.add(BarEntry(1f,5f))
                     entryList.add(BarEntry(2f,8f))
@@ -56,12 +69,6 @@ class AnalysisChartAdapter(
 
                 else -> {
                     holder.title.text = "나머지"
-                    entryList.add(BarEntry(0f,6f))
-                    entryList.add(BarEntry(1f,3f))
-                    entryList.add(BarEntry(2f,2f))
-                    entryList.add(BarEntry(3f,7f))
-                    entryList.add(BarEntry(4f,1f))
-                    entryList.add(BarEntry(5f,2f))
                 }
             }
             initChart(holder, entryList)
