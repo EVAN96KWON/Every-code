@@ -12,7 +12,10 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AnalysisChartAdapter(
@@ -36,35 +39,48 @@ class AnalysisChartAdapter(
             when (position) {
                 0 ->  {
                     holder.title.text = "주간 성적"
-                    for (i in dataSet) {
 
+                    val recentGrades = dataSet[0] as List<Float>
+
+                    for ((index, value) in recentGrades.withIndex()) {
+                        entryList.add(BarEntry(index.toFloat(), value))
                     }
-                    entryList.add(BarEntry(0f,2f))
-                    entryList.add(BarEntry(1f,3f))
-                    entryList.add(BarEntry(2f,4f))
-                    entryList.add(BarEntry(3f,5f))
-                    entryList.add(BarEntry(4f,6f))
-                    entryList.add(BarEntry(5f,7f))
                 }
 
                 1 -> {
-                    holder.title.text = "선호하는 문제 수"
-                    entryList.add(BarEntry(0f,1f))
-                    entryList.add(BarEntry(1f,5f))
-                    entryList.add(BarEntry(2f,8f))
-                    entryList.add(BarEntry(3f,3f))
-                    entryList.add(BarEntry(4f,6f))
-                    entryList.add(BarEntry(5f,2f))
+                    holder.title.text = "선호하는 문제 수(시행한 횟수)"
+
+                    val problemNums = dataSet[1] as HashMap<String, Int>
+                    val keySet = problemNums.keys
+                    val labels = ArrayList<String>()
+
+                    for ((index, key) in keySet.withIndex()) {
+                        entryList.add(BarEntry(index.toFloat(), problemNums[key]!!.toFloat()))
+                        labels.add(key + "문제")
+                    }
+
+                    holder.number.xAxis.valueFormatter = object: ValueFormatter() {
+                        override fun getFormattedValue(value: Float): String {
+                            return labels[value.toInt()]
+                        }
+                    }
                 }
 
                 2 -> {
-                    holder.title.text = "한 문제당 걸리는 시간"
-                    entryList.add(BarEntry(0f,1f))
-                    entryList.add(BarEntry(1f,5f))
-                    entryList.add(BarEntry(2f,8f))
-                    entryList.add(BarEntry(3f,3f))
-                    entryList.add(BarEntry(4f,6f))
-                    entryList.add(BarEntry(5f,2f))
+                    holder.title.text = "한 문제당 걸리는 시간(초)"
+
+                    val recentGrades = dataSet[2] as List<Float>
+                    val labels = arrayOf("최장", "평균", "최단")
+
+                    for ((index, value) in recentGrades.withIndex()) {
+                        entryList.add(BarEntry(index.toFloat(), value))
+                    }
+
+                    holder.number.xAxis.valueFormatter = object: ValueFormatter() {
+                        override fun getFormattedValue(value: Float): String {
+                            return labels[value.toInt()]
+                        }
+                    }
                 }
 
                 else -> {
@@ -81,16 +97,18 @@ class AnalysisChartAdapter(
     ) {
         // #2 바 데이터 셋
         val barDataSet = BarDataSet(entryList, "MyBarDataSet")
-        barDataSet.color = ColorTemplate.rgb("#ff7b22")
+        barDataSet.color = ColorTemplate.rgb("#F2CED1")
         // #3 바 데이터
         val barData = BarData(barDataSet)
-        barData.barWidth = 0.5f
+        barData.barWidth = 0.7f
         holder.number.data = barData
         holder.number.apply {
             //터치, Pinch 상호작용
             setTouchEnabled(false)
-            setScaleEnabled(false)
+            setScaleEnabled(true)
             setPinchZoom(false)
+
+            legend.isEnabled = false
 
             // Chart 가 그려질때 애니메이션
             animateXY(300, 500)
@@ -121,6 +139,8 @@ class AnalysisChartAdapter(
 
             //x축 데이터 갯수 설정
             xAxis.labelCount = entryList.size
+
+            xAxis.granularity = 1f
         }
         holder.number.invalidate()
     }

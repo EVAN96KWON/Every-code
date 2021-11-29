@@ -5,6 +5,13 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="app_primary_color_1">#B6BEF2</color>
+    <color name="app_primary_color_2">#A29ADB</color>
+    <color name="app_primary_color_3">#CDAFF9</color>
+    <color name="app_primary_color_4">#9AB4DB</color>
+    <color name="app_second_color_1">#F2CED1</color>
+    <color name="app_second_color_2">#F2DF9D</color>
+    <color name="app_second_color_3">#AAF2BB</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

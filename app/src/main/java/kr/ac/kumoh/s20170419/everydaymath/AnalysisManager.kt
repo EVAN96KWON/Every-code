@@ -16,24 +16,24 @@ class AnalysisManager(private val userLog: String) {
 
     private fun initList(): ArrayList<List<String>> {
         val tmpList = userLog.split("\n")
-        var userLogList = ArrayList<List<String>>()
+        val userLogList = ArrayList<List<String>>()
         for (i in tmpList.indices) userLogList.add(tmpList[i].split(","))
         userLogList.removeAt(userLogList.size - 1)
         return userLogList
     }
 
     fun getTimes(): List<Float> {
-        var timeList = ArrayList<Float>()
+        val timeList = ArrayList<Float>()
         for (i in userLogList) timeList.add((i[3].toFloat() / i[2].toFloat() * 100).roundToInt() / 100f)
         return listOf<Float>(
             timeList.maxOrNull()!!,
-            timeList.minOrNull()!!,
-            (timeList.average() * 100).roundToInt() / 100f)
+            (timeList.average() * 100).roundToInt() / 100f,
+            timeList.minOrNull()!!)
     }
 
     fun getProblemNums(): HashMap<String, Int> {
-        var problemNumsList = ArrayList<String>()
-        var result = HashMap<String, Int>()
+        val problemNumsList = ArrayList<String>()
+        val result = HashMap<String, Int>()
         for (i in userLogList) problemNumsList.add(i[2])
         for (i in problemNumsList) {
             if (!result.containsKey(i)) result[i] = 1
@@ -42,8 +42,8 @@ class AnalysisManager(private val userLog: String) {
         return result
     }
 
-    fun getCurrentGrades(): ArrayList<Float> {
-        var gradeList = ArrayList<Float>()
+    fun getRecentGrades(): ArrayList<Float> {
+        val gradeList = ArrayList<Float>()
         for (i in userLogList) gradeList.add(((i[1].toFloat() / i[2].toFloat()) * 10000).roundToInt() / 100f)
         return gradeList
     }
