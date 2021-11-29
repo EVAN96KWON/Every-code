@@ -19,5 +19,18 @@ class TestActivity : AppCompatActivity() {
         view.testLine1.setText("${num1}")
         view.testLine2.setText("${num2}")
 
+
+        for (i in 1 until 20)
+        {
+            view.nextTest.setOnClickListener {
+                var num3 = (1..10).random()
+                var num4 = (1..10).random()
+
+                view.testLine1.setText("${num3}")
+                view.testLine2.setText("${num4}")
+            }
+        }
+
     }
 }
+

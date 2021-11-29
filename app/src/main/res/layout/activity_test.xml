@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,10 +7,15 @@
     tools:context=".TestActivity">
 
     <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="113dp">
+        android:id="@+id/tableLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/next_test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TableRow
             android:layout_width="match_parent"
@@ -22,10 +26,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_span="2"
-                android:textSize="80dp"
                 android:layout_gravity="right"
-                android:text="TextView" />
+                android:layout_span="2"
+                android:text="TextView"
+                android:textSize="80dp" />
         </TableRow>
 
         <TableRow
@@ -36,16 +40,16 @@
                 android:id="@+id/sign1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="80dp"
-                android:text="X" />
+                android:text="X"
+                android:textSize="80dp" />
 
             <TextView
                 android:id="@+id/test_line2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="80dp"
                 android:layout_gravity="right"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="80dp" />
         </TableRow>
 
         <TableRow
@@ -58,12 +62,24 @@
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_gravity="right"
-                android:textSize="80dp"
-                android:hint="정답 입력" />
+                android:hint="정답 입력"
+                android:textSize="80dp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </TableLayout>
+
+    <Button
+        android:id="@+id/next_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="다음 문제"
+        app:layout_constraintTop_toBottomOf="@id/tableLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+    </Button>
 </androidx.constraintlayout.widget.ConstraintLayout>
