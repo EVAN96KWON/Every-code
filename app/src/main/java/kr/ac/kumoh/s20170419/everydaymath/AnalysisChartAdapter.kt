@@ -59,7 +59,7 @@ class AnalysisChartAdapter(
                         labels.add(key + "문제")
                     }
 
-                    holder.number.xAxis.valueFormatter = object: ValueFormatter() {
+                    holder.barChart.xAxis.valueFormatter = object: ValueFormatter() {
                         override fun getFormattedValue(value: Float): String {
                             return labels[value.toInt()]
                         }
@@ -76,7 +76,7 @@ class AnalysisChartAdapter(
                         entryList.add(BarEntry(index.toFloat(), value))
                     }
 
-                    holder.number.xAxis.valueFormatter = object: ValueFormatter() {
+                    holder.barChart.xAxis.valueFormatter = object: ValueFormatter() {
                         override fun getFormattedValue(value: Float): String {
                             return labels[value.toInt()]
                         }
@@ -101,8 +101,8 @@ class AnalysisChartAdapter(
         // #3 바 데이터
         val barData = BarData(barDataSet)
         barData.barWidth = 0.7f
-        holder.number.data = barData
-        holder.number.apply {
+        holder.barChart.data = barData
+        holder.barChart.apply {
             //터치, Pinch 상호작용
             setTouchEnabled(false)
             setScaleEnabled(true)
@@ -142,11 +142,11 @@ class AnalysisChartAdapter(
 
             xAxis.granularity = 1f
         }
-        holder.number.invalidate()
+        holder.barChart.invalidate()
     }
 
     inner class ChartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title = itemView.findViewById(R.id.chart_title) as TextView
-        val number = itemView.findViewById(R.id.bar_chart) as BarChart
+        val barChart = itemView.findViewById(R.id.bar_chart) as BarChart
     }
 }
