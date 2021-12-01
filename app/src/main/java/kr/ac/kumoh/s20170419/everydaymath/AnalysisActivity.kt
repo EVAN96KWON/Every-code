@@ -53,8 +53,7 @@ class AnalysisActivity : AppCompatActivity() {
         val userProblemsNums = sps.getString("user_problems_nums", "")
         val appTheme = sps.getBoolean("app_theme", false)
 
-        view.title.text = "${userNickname}님의 분석 결과에요 \uD83D\uDD75"
-        view.subTitle.text = "${userGrade}, ${userProblemsNums}문제"
+        supportActionBar?.title = "${userNickname}님의 분석 결과에요 \uD83D\uDD75"
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

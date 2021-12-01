@@ -91,7 +91,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#A5A5A5"
+                    android:background="#A5A5A5A5"
                     android:layout_marginHorizontal="13sp" />
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/bar_chart"

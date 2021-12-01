@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:expandedTitleMarginStart="72dp"
-            app:expandedTitleMarginBottom="28dp"
+            app:expandedTitleMarginTop="50dp"
+            app:expandedTitleMarginBottom="50dp"
             app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"
             app:collapsedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Collapsed"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap">
@@ -43,26 +44,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginVertical="50sp">
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TITLE"
-                    android:textSize="30sp"
-                    android:textColor="@color/white"/>
-                <TextView
-                    android:id="@+id/sub_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SUB_TITLE"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"

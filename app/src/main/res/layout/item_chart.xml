@@ -21,9 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="250dp" />
 
-<!--    <View-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="2dp"-->
-<!--        android:layout_margin="30sp"-->
-<!--        android:background="#618A8A8A"/>-->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#A5A5A5A5"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp" />
 </LinearLayout>

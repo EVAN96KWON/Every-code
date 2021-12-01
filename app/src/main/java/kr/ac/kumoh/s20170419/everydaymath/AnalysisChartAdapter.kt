@@ -33,7 +33,6 @@ class AnalysisChartAdapter(
 
     override fun onBindViewHolder(holder: ChartViewHolder, position: Int) {
         if(position < dataSet.size) {
-//            holder.number.text = dataSet[position].toString()
             val entryList = mutableListOf<BarEntry>()
             // 여기서 엔트리 리스트 작성
             when (position) {
@@ -81,10 +80,12 @@ class AnalysisChartAdapter(
                             return labels[value.toInt()]
                         }
                     }
+                    holder.divider.visibility = View.GONE
                 }
 
                 else -> {
                     holder.title.text = "나머지"
+                    holder.divider.visibility = View.GONE
                 }
             }
             initChart(holder, entryList)
@@ -148,5 +149,6 @@ class AnalysisChartAdapter(
     inner class ChartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title = itemView.findViewById(R.id.chart_title) as TextView
         val barChart = itemView.findViewById(R.id.bar_chart) as BarChart
+        val divider = itemView.findViewById(R.id.divider) as View
     }
 }
