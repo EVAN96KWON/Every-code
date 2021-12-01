@@ -23,7 +23,7 @@
                 android:id="@+id/btn_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/outline_settings_white_24"
+                android:src="@drawable/outline_settings_white_36"
                 android:padding="15sp"
                 android:layout_gravity="center|end"
                 android:scaleType="center"
@@ -35,10 +35,12 @@
             android:gravity="center"
             android:orientation="vertical">
             <LinearLayout
+                android:id="@+id/title_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingVertical="100sp"
+                android:paddingTop="150sp"
+                android:paddingBottom="75sp"
                 android:gravity="center">
                 <TextView
                     android:id="@+id/main_title"
@@ -56,13 +58,14 @@
                     android:textSize="20sp"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/main_contents_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/card_background_white"
                 android:layout_margin="20sp"
                 android:padding="10sp"
-                android:elevation="2dp">
+                android:elevation="4dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -100,12 +103,14 @@
             <LinearLayout
                 android:id="@+id/btn_goto_test"
                 android:layout_width="match_parent"
-                android:layout_height="125sp"
+                android:layout_height="match_parent"
                 android:background="@drawable/card_background_white"
-                android:layout_margin="20sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginBottom="40sp"
                 android:padding="10sp"
                 android:gravity="center"
-                android:elevation="2dp">
+                android:elevation="4dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

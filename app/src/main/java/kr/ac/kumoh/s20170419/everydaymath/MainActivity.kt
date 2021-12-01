@@ -1,9 +1,13 @@
 package kr.ac.kumoh.s20170419.everydaymath
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationSet
+import android.view.animation.AnimationUtils
 import androidx.preference.PreferenceManager
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -11,6 +15,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import kotlinx.coroutines.delay
 import kr.ac.kumoh.s20170419.everydaymath.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
 
+        startAnimations()
+
         view.btnSettings.setOnClickListener {
             startActivity(
                 Intent(
@@ -30,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                     SettingsActivity::class.java
                 )
             )
+            overridePendingTransition(R.anim.slide_up_enter, R.anim.slide_up_exit)
         }
 
         view.btnGotoTest.setOnClickListener {
@@ -39,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                     TestActivity::class.java
                 )
             )
+            overridePendingTransition(R.anim.slide_up_enter, R.anim.slide_up_exit)
         }
 
         view.barChart.setOnClickListener {
@@ -48,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                     AnalysisActivity::class.java
                 )
             )
+            overridePendingTransition(R.anim.slide_up_enter, R.anim.slide_up_exit)
         }
 
         view.btnGotoAnalysis.setOnClickListener {
@@ -57,7 +67,17 @@ class MainActivity : AppCompatActivity() {
                     AnalysisActivity::class.java
                 )
             )
+            overridePendingTransition(R.anim.slide_up_enter, R.anim.slide_up_exit)
         }
+    }
+
+    private fun startAnimations() {
+        val translateUpAnim1 = AnimationUtils.loadAnimation(this, R.anim.translate_up)
+        val translateUpAnim2 = AnimationUtils.loadAnimation(this, R.anim.translate_up)
+        translateUpAnim2.startOffset = 100
+
+        view.mainContents1.startAnimation(translateUpAnim1)
+        view.btnGotoTest.startAnimation(translateUpAnim2)
     }
 
     override fun onResume() {
