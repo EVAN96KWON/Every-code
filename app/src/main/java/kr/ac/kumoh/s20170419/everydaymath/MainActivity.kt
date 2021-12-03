@@ -92,6 +92,9 @@ class MainActivity : AppCompatActivity() {
         view.mainTitle.text = "${userNickname}님 안녕하세요\uD83D\uDE0E"
         view.mainSubTitle.text = "${userGrade}, ${userProblemsNums}문제"
 
+        if (appTheme) ThemeManager.applyTheme(ThemeManager.ThemeMode.DARK)
+        else ThemeManager.applyTheme(ThemeManager.ThemeMode.LIGHT)
+
         initChart()
     }
 

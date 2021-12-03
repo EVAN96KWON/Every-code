@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/app_primary_color_1"
+    android:background="?attr/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -21,12 +21,12 @@
                 android:layout_weight="1"/>
             <ImageView
                 android:id="@+id/btn_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/outline_settings_white_36"
-                android:padding="15sp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="12dp"
+                android:src="@drawable/outline_settings_24"
                 android:layout_gravity="center|end"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:contentDescription="@string/settings"/>
         </LinearLayout>
         <LinearLayout
@@ -47,14 +47,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MAIN TITLE"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="40sp"/>
                 <TextView
                     android:id="@+id/main_sub_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MAIN SUB_TITLE"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="20sp"/>
             </LinearLayout>
             <LinearLayout
