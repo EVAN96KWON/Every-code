@@ -34,8 +34,17 @@ class AnalysisActivity : AppCompatActivity() {
 //                    "2021-11-28,13,20,960\n" +
 //                    "2021-11-29,23,40,320\n"
 //        )
-        val am = AnalysisManager(UserLogManager(filesDir).readTextFile())
-        val dataSet = listOf<Any>(am.getRecentGrades(), am.getProblemNums(), am.getTimes())
+
+        val userLog = UserLogManager(filesDir).readTextFile()
+        val am = AnalysisManager(userLog)
+
+        UserLogManager(filesDir).writeTextFile(userLog)
+
+        val dataSet = listOf<Any>(
+            am.getRecentGrades(),
+            am.getProblemNums(),
+            am.getTimes()
+        )
         view.recyclerView.adapter = AnalysisChartAdapter(dataSet)
     }
 
