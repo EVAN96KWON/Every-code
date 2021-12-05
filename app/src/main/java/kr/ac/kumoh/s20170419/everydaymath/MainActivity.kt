@@ -14,6 +14,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import kotlinx.coroutines.delay
 import kr.ac.kumoh.s20170419.everydaymath.databinding.ActivityMainBinding
@@ -84,9 +85,9 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         val sps = PreferenceManager.getDefaultSharedPreferences(this)
-        val userNickname = sps.getString("user_nickname", "defalut_nickname")
-        val userGrade = sps.getString("user_grade", "")
-        val userProblemsNums = sps.getString("user_problems_nums", "")
+        val userNickname = sps.getString("user_nickname", "사용자")
+        val userGrade = sps.getString("user_grade", "1학년")
+        val userProblemsNums = sps.getString("user_problems_nums", "10")
         val appTheme = sps.getBoolean("app_theme", false)
 
         view.mainTitle.text = "${userNickname}님 안녕하세요\uD83D\uDE0E"
@@ -102,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         val entryList = mutableListOf<BarEntry>()
         val am = AnalysisManager(UserLogManager(filesDir).readTextFile())
         val recentGrades = am.getRecentGrades() as List<Float>
+        val labels = am.getRecentDaysLabel() as ArrayList<String>
 
         for ((index, value) in recentGrades.withIndex()) {
             entryList.add(BarEntry(index.toFloat(), value))
@@ -155,6 +157,13 @@ class MainActivity : AppCompatActivity() {
 
             xAxis.granularity = 1f
         }
+
+        view.barChart.xAxis.valueFormatter = object: ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                return labels[value.toInt()]
+            }
+        }
+
         view.barChart.invalidate()
     }
 }

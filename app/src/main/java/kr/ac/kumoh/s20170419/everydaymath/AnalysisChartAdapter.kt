@@ -14,13 +14,22 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class AnalysisChartAdapter(
-    private val dataSet: List<Any>
+    filesDir: File
 ) : RecyclerView.Adapter<AnalysisChartAdapter.ChartViewHolder>() {
+
+    private val userLog = UserLogManager(filesDir).readTextFile()
+    private val am = AnalysisManager(userLog)
+    private val dataSet = listOf(
+        am.getRecentGrades(),
+        am.getProblemNums(),
+        am.getTimes()
+    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChartViewHolder {
         val layoutView: LinearLayout = LayoutInflater.from(parent.context)
@@ -40,9 +49,16 @@ class AnalysisChartAdapter(
                     holder.title.text = "주간 성적"
 
                     val recentGrades = dataSet[0] as List<Float>
+                    val labels = am.getRecentDaysLabel()
 
                     for ((index, value) in recentGrades.withIndex()) {
                         entryList.add(BarEntry(index.toFloat(), value))
+                    }
+
+                    holder.barChart.xAxis.valueFormatter = object: ValueFormatter() {
+                        override fun getFormattedValue(value: Float): String {
+                            return labels[value.toInt()]
+                        }
                     }
                 }
 
@@ -54,8 +70,10 @@ class AnalysisChartAdapter(
                     val labels = ArrayList<String>()
 
                     for ((index, key) in keySet.withIndex()) {
-                        entryList.add(BarEntry(index.toFloat(), problemNums[key]!!.toFloat()))
-                        labels.add(key + "문제")
+                        if (key != "11") {
+                            entryList.add(BarEntry(index.toFloat(), problemNums[key]!!.toFloat()))
+                            labels.add(key + "문제")
+                        }
                     }
 
                     holder.barChart.xAxis.valueFormatter = object: ValueFormatter() {

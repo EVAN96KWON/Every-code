@@ -35,17 +35,17 @@ class AnalysisActivity : AppCompatActivity() {
 //                    "2021-11-29,23,40,320\n"
 //        )
 
-        val userLog = UserLogManager(filesDir).readTextFile()
-        val am = AnalysisManager(userLog)
-
-        UserLogManager(filesDir).writeTextFile(userLog)
-
-        val dataSet = listOf<Any>(
-            am.getRecentGrades(),
-            am.getProblemNums(),
-            am.getTimes()
-        )
-        view.recyclerView.adapter = AnalysisChartAdapter(dataSet)
+//        val userLog = UserLogManager(filesDir).readTextFile()
+//        val am = AnalysisManager(userLog)
+//
+//        UserLogManager(filesDir).writeTextFile(userLog)
+//
+//        val dataSet = listOf<Any>(
+//            am.getRecentGrades(),
+//            am.getProblemNums(),
+//            am.getTimes(),
+//        )
+        view.recyclerView.adapter = AnalysisChartAdapter(filesDir)
     }
 
     private fun startAnimations() {
@@ -58,9 +58,9 @@ class AnalysisActivity : AppCompatActivity() {
     private fun setTitle() {
         val sps = PreferenceManager.getDefaultSharedPreferences(this)
         val userNickname = sps.getString("user_nickname", "defalut_nickname")
-        val userGrade = sps.getString("user_grade", "")
-        val userProblemsNums = sps.getString("user_problems_nums", "")
-        val appTheme = sps.getBoolean("app_theme", false)
+//        val userGrade = sps.getString("user_grade", "")
+//        val userProblemsNums = sps.getString("user_problems_nums", "")
+//        val appTheme = sps.getBoolean("app_theme", false)
 
         supportActionBar?.title = "${userNickname}님의 분석 결과에요 \uD83D\uDD75"
     }

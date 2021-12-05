@@ -23,7 +23,7 @@ class AnalysisManager(private val userLog: String) {
 
         // check log size
         while (userLogList.size < 7) {
-            userLogList.add(0, listOf("2001-01-01","0","10","0"))
+            userLogList.add(0, listOf("2001-01-01","0","11","0"))
         }
 
         return userLogList
