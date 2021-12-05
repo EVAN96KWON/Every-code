@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         view = ActivityMainBinding.inflate(layoutInflater)
