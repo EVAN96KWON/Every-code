@@ -1,6 +1,7 @@
 package kr.ac.kumoh.s20170419.everydaymath
-import android.os.Build
-import androidx.annotation.RequiresApi
+
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.roundToInt
 
 class AnalysisManager(private val userLog: String) {
@@ -19,6 +20,12 @@ class AnalysisManager(private val userLog: String) {
         val userLogList = ArrayList<List<String>>()
         for (i in tmpList.indices) userLogList.add(tmpList[i].split(","))
         userLogList.removeAt(userLogList.size - 1)
+
+        // check log size
+        while (userLogList.size < 7) {
+            userLogList.add(0, listOf("2001-01-01","0","11","0"))
+        }
+
         return userLogList
     }
 
@@ -44,7 +51,35 @@ class AnalysisManager(private val userLog: String) {
 
     fun getRecentGrades(): ArrayList<Float> {
         val gradeList = ArrayList<Float>()
-        for (i in userLogList) gradeList.add(((i[1].toFloat() / i[2].toFloat()) * 10000).roundToInt() / 100f)
+        for (i in userLogList) {
+            gradeList.add(((i[1].toFloat() / i[2].toFloat()) * 10000).roundToInt() / 100f)
+        }
         return gradeList
+    }
+
+    private fun getDateDay(date: String, dateType: String): String? {
+        val dateFormat = SimpleDateFormat(dateType)
+        val nDate: Date = dateFormat.parse(date)
+        val cal = Calendar.getInstance()
+        cal.time = nDate
+
+        return when (cal[Calendar.DAY_OF_WEEK]) {
+            1 -> "일"
+            2 -> "월"
+            3 -> "화"
+            4 -> "수"
+            5 -> "목"
+            6 -> "금"
+            7 -> "토"
+            else -> "?"
+        }
+    }
+
+    fun getRecentDaysLabel(): List<String> {
+        val daysList = ArrayList<String>()
+        for (i in userLogList) {
+            daysList.add(getDateDay(i[0], "yyyy-MM-dd").toString())
+        }
+        return daysList
     }
 }

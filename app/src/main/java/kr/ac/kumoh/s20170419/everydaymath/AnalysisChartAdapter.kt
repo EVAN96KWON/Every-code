@@ -14,13 +14,22 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class AnalysisChartAdapter(
-    private val dataSet: List<Any>
+    filesDir: File
 ) : RecyclerView.Adapter<AnalysisChartAdapter.ChartViewHolder>() {
+
+    private val userLog = UserLogManager(filesDir).readTextFile()
+    private val am = AnalysisManager(userLog)
+    private val dataSet = listOf(
+        am.getRecentGrades(),
+        am.getProblemNums(),
+        am.getTimes()
+    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChartViewHolder {
         val layoutView: LinearLayout = LayoutInflater.from(parent.context)
@@ -33,7 +42,6 @@ class AnalysisChartAdapter(
 
     override fun onBindViewHolder(holder: ChartViewHolder, position: Int) {
         if(position < dataSet.size) {
-//            holder.number.text = dataSet[position].toString()
             val entryList = mutableListOf<BarEntry>()
             // 여기서 엔트리 리스트 작성
             when (position) {
@@ -41,9 +49,16 @@ class AnalysisChartAdapter(
                     holder.title.text = "주간 성적"
 
                     val recentGrades = dataSet[0] as List<Float>
+                    val labels = am.getRecentDaysLabel()
 
                     for ((index, value) in recentGrades.withIndex()) {
                         entryList.add(BarEntry(index.toFloat(), value))
+                    }
+
+                    holder.barChart.xAxis.valueFormatter = object: ValueFormatter() {
+                        override fun getFormattedValue(value: Float): String {
+                            return labels[value.toInt()]
+                        }
                     }
                 }
 
@@ -55,8 +70,10 @@ class AnalysisChartAdapter(
                     val labels = ArrayList<String>()
 
                     for ((index, key) in keySet.withIndex()) {
-                        entryList.add(BarEntry(index.toFloat(), problemNums[key]!!.toFloat()))
-                        labels.add(key + "문제")
+                        if (key != "11") {
+                            entryList.add(BarEntry(index.toFloat(), problemNums[key]!!.toFloat()))
+                            labels.add(key + "문제")
+                        }
                     }
 
                     holder.barChart.xAxis.valueFormatter = object: ValueFormatter() {
@@ -81,10 +98,12 @@ class AnalysisChartAdapter(
                             return labels[value.toInt()]
                         }
                     }
+                    holder.divider.visibility = View.GONE
                 }
 
                 else -> {
                     holder.title.text = "나머지"
+                    holder.divider.visibility = View.GONE
                 }
             }
             initChart(holder, entryList)
@@ -148,5 +167,6 @@ class AnalysisChartAdapter(
     inner class ChartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title = itemView.findViewById(R.id.chart_title) as TextView
         val barChart = itemView.findViewById(R.id.bar_chart) as BarChart
+        val divider = itemView.findViewById(R.id.divider) as View
     }
 }

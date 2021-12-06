@@ -6,12 +6,23 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="app_primary_color_1">#B6BEF2</color>
-    <color name="app_primary_color_2">#A29ADB</color>
-    <color name="app_primary_color_3">#CDAFF9</color>
+    <color name="app_primary_color_2">#858ebf</color>
+    <color name="app_primary_color_3">#e9f0ff</color>
     <color name="app_primary_color_4">#9AB4DB</color>
     <color name="app_second_color_1">#F2CED1</color>
-    <color name="app_second_color_2">#F2DF9D</color>
-    <color name="app_second_color_3">#AAF2BB</color>
+    <color name="app_second_color_2">#bf9da0</color>
+    <color name="app_second_color_3">#ffffff</color>
+    <color name="app_third_color_2">#F2DF9D</color>
+    <color name="app_fourth_color_3">#AAF2BB</color>
+    <color name="app_dark_primary_1">#858ebf</color>
+    <color name="app_dark_primary_2">#57618f</color>
+    <color name="app_dark_primary_3">#b6bef2</color>
+    <color name="app_dark_second_1">#f2ced1</color>
+    <color name="app_dark_second_2">#bf9da0</color>
+    <color name="app_dark_second_3">#ffffff</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_background">#424242</color>
+    <color name="title_light">#FFFFFF</color>
+    <color name="title_dark">#A8A8A8</color>
 </resources>

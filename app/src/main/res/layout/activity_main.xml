@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/app_primary_color_1"
+    android:background="?attr/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -21,12 +21,12 @@
                 android:layout_weight="1"/>
             <ImageView
                 android:id="@+id/btn_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/outline_settings_white_24"
-                android:padding="15sp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="12dp"
+                android:src="@drawable/outline_settings_24"
                 android:layout_gravity="center|end"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:contentDescription="@string/settings"/>
         </LinearLayout>
         <LinearLayout
@@ -35,34 +35,36 @@
             android:gravity="center"
             android:orientation="vertical">
             <LinearLayout
+                android:id="@+id/title_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingVertical="100sp"
+                android:paddingVertical="10sp"
                 android:gravity="center">
                 <TextView
                     android:id="@+id/main_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MAIN TITLE"
-                    android:textColor="@color/white"
-                    android:textSize="40sp"/>
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textSize="30sp"/>
                 <TextView
                     android:id="@+id/main_sub_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MAIN SUB_TITLE"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"/>
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textSize="15sp"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/main_contents_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/card_background_white"
                 android:layout_margin="20sp"
                 android:padding="10sp"
-                android:elevation="2dp">
+                android:elevation="4dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -88,7 +90,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#A5A5A5"
+                    android:background="#A5A5A5A5"
                     android:layout_marginHorizontal="13sp" />
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/bar_chart"
@@ -100,12 +102,14 @@
             <LinearLayout
                 android:id="@+id/btn_goto_test"
                 android:layout_width="match_parent"
-                android:layout_height="125sp"
+                android:layout_height="match_parent"
                 android:background="@drawable/card_background_white"
-                android:layout_margin="20sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginBottom="40sp"
                 android:padding="10sp"
                 android:gravity="center"
-                android:elevation="2dp">
+                android:elevation="4dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
