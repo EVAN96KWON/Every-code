@@ -1,8 +1,10 @@
 package kr.ac.kumoh.s20170419.everydaymath
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.preference.PreferenceManager
 import kr.ac.kumoh.s20170419.everydaymath.databinding.ActivityResultBinding
 import java.util.ArrayList
@@ -17,21 +19,30 @@ import java.util.ArrayList
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var view: ActivityResultBinding
+    private val TAG: String = "ResultActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityResultBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_result)
+        setContentView(view.root)
+
+        var currentDate = intent.getStringExtra("current_date").toString()
+        val answerCount = intent.getStringExtra("answer_count").toString()
+        val problemNums = intent.getStringExtra("problem_nums").toString()
+        val endTime = intent.getStringExtra("end_time").toString()
+
+        Log.e(TAG, "넘어온 string : $currentDate $answerCount $problemNums $endTime")
 
         val sps = PreferenceManager.getDefaultSharedPreferences(this)
         var userProblemsNums = sps.getString("user_problems_nums", "1")
 
         val answerNum: Int = 0; // = 맞춘 문제 수
         val testTime: Int = 0; // = 걸린 시간
-        val resultScore: Float = (answerNum / userProblemsNums?.toInt()!!).toFloat() // = (맞춘 문제 수 / 전체 문제 수)
+        val resultScore: Float = (answerCount!!.toFloat() / problemNums!!.toFloat()) * 100 // = (맞춘 문제 수 / 전체 문제 수)
 
         // TextView에 점수 표시
         view.resultComment.text = setComment(resultScore)
+        view.resultScore.text = resultScore.toString() + "점"
         //결과값 userLog.txt에 저장
         writeResult(resultScore, testTime)
 

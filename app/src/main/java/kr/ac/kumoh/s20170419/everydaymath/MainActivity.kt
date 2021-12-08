@@ -14,13 +14,16 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import kr.ac.kumoh.s20170419.everydaymath.databinding.ActivityMainBinding
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
     private lateinit var view: ActivityMainBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
+        //setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         view = ActivityMainBinding.inflate(layoutInflater)
