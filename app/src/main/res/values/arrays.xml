@@ -20,4 +20,16 @@
         <item>45</item>
         <item>50</item>
     </string-array>
+    <string-array name="num_length">
+        <item>한 자릿수</item>
+        <item>두 자릿수</item>
+        <item>세 자릿수</item>
+        <item>네 자릿수</item>
+    </string-array>
+    <string-array name="operators">
+        <item>더하기, +</item>
+        <item>빼기, -</item>
+        <item>곱하기, ×</item>
+        <item>나누기, ÷</item>
+    </string-array>
 </resources>

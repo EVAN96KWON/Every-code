@@ -55,9 +55,9 @@ class ResultActivity : AppCompatActivity() {
         return when {
             resultScore == 100f -> "완벽해요! \uD83D\uDE0D"
             resultScore >= 90f -> "휼륭해요! \uD83D\uDE01"
-            resultScore >= 70f -> "잘했어요! 다음 단계에 도전해볼까요? \uD83E\uDDD0"
+            resultScore >= 70f -> "잘했어요!\n다음 단계에 도전해볼까요? \uD83E\uDDD0"
             resultScore >= 40f -> "잘하고 있어요! 화이팅입니다. \uD83D\uDE0E"
-            else -> "천리길도 한 걸음부터! 잘하고 있습니다. \uD83E\uDD70"
+            else -> "천리길도 한 걸음부터!\n잘하고 있습니다. \uD83E\uDD70"
         }
     }
 
