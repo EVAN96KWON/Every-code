@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="설정"
+        android:title="사용자 설정"
         android:iconSpaceReserved="false">
         <EditTextPreference
             android:key="user_nickname"
@@ -20,6 +20,29 @@
             android:key="user_problems_nums"
             android:title="문제 수"
             android:summary="한 번에 풀 문제 수를 설정합니다." />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="문제 설정"
+        android:iconSpaceReserved="false">
+        <ListPreference
+            android:entries="@array/num_length"
+            android:entryValues="@array/num_length"
+            android:key="num1_length"
+            android:title="첫 번째 수 길이 설정"
+            android:summary="문제에서 풀 첫 번째 수의 길이를 설정합니다." />
+        <ListPreference
+            android:entries="@array/num_length"
+            android:entryValues="@array/num_length"
+            android:key="num2_length"
+            android:title="두 번째 수 길이 설정"
+            android:summary="문제에서 풀 두 번째 수의 길이를 설정합니다." />
+        <ListPreference
+            android:entries="@array/operators"
+            android:entryValues="@array/operators"
+            android:key="operator"
+            android:title="연산자 설정"
+            android:summary="문제에서 풀 연산자(더하기, 빼기, 곱하기, 나누기)를 선택합니다."/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="테마 설정">
