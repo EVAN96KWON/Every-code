@@ -29,14 +29,80 @@ class TestActivity : AppCompatActivity() {
         val sps = PreferenceManager.getDefaultSharedPreferences(this)
         val userProblemsNums = sps.getString("user_problems_nums", "10")!!.toInt()
 
+        val num1Length = when (sps.getString("num1_length", "한 자릿수")) {
+            "한 자릿수" -> 1
+            "두 자릿수" -> 2
+            "세 자릿수" -> 3
+            "네 자릿수" -> 4
+            else -> 1
+        }
+        val num2Length = when (sps.getString("num2_length", "한 자릿수")) {
+            "한 자릿수" -> 1
+            "두 자릿수" -> 2
+            "세 자릿수" -> 3
+            "네 자릿수" -> 4
+            else -> 1
+        }
+        val operator = when (sps.getString("operator", "더하기, +")) {
+            "더하기, +"  -> 1
+            "빼기, -" -> 2
+            "곱하기, ×" -> 3
+            "나누기, ÷" -> 4
+            else -> 1
+        }
+
         var answerCount = 0
         var solvedCount = 1
-        var num1 = (1..10).random()
-        var num2 = (1..10).random()
-        var currentAnswer = (num1 * num2).toString()
+        var num1 = 0
+        var num2 = 0
+        var currentAnswer = 0
+
+        if (num1Length == 1) {
+            num1 = (1..10).random()
+        }
+        else if (num1Length == 2) {
+            num1 = (10..99).random()
+        }
+        else if (num1Length == 3) {
+            num1 = (100..999).random()
+        }
+        else if (num1Length == 4) {
+            num1 = (1000..9999).random()
+        }
+
+        if (num2Length == 1) {
+            num2 = (1..10).random()
+        }
+        else if (num2Length == 2) {
+            num2 = (10..99).random()
+        }
+        else if (num2Length == 3) {
+            num2 = (100..999).random()
+        }
+        else if (num2Length == 4) {
+            num2 = (1000..9999).random()
+        }
 
         view.testLine1.text = "$num1"
         view.testLine2.text = "$num2"
+
+        if (operator == 1) {
+            view.sign1.text = "+"
+            currentAnswer = (num1 + num2)
+        }
+        else if (operator == 2) {
+            view.sign1.text = "-"
+            currentAnswer = (num1 - num2)
+        }
+        else if (operator == 3) {
+            view.sign1.text = "X"
+            currentAnswer = (num1 * num2)
+        }
+        else if (operator == 4) {
+            view.sign1.text = "÷"
+            currentAnswer = (num1 / num2)
+        }
+
         view.currentCount.text = "$answerCount / $userProblemsNums"
 
 
@@ -54,7 +120,7 @@ class TestActivity : AppCompatActivity() {
                 finish()
             }
 
-            if ( view.inputAnswer1.text.toString() == currentAnswer) {
+            if ( view.inputAnswer1.text.toString() == currentAnswer.toString()) {
                 answerCount++
             }
 
@@ -64,12 +130,53 @@ class TestActivity : AppCompatActivity() {
             view.testText.text = view.inputAnswer1.text // textview에 edittext값 넣기
 
             solvedCount += 1 // 푼 문제 수
-            num1 = (1..10).random() // 문제 다시 랜덤 배정
-            num2 = (1..10).random()
-            currentAnswer = (num1 * num2).toString()
 
-            view.testLine1.text = "$num1" // textview에 set
+            if (num1Length == 1) {
+                num1 = (1..10).random()
+            }
+            else if (num1Length == 2) {
+                num1 = (10..99).random()
+            }
+            else if (num1Length == 3) {
+                num1 = (100..999).random()
+            }
+            else if (num1Length == 4) {
+                num1 = (1000..9999).random()
+            }
+
+            if (num2Length == 1) {
+                num2 = (1..10).random()
+            }
+            else if (num2Length == 2) {
+                num2 = (10..99).random()
+            }
+            else if (num2Length == 3) {
+                num2 = (100..999).random()
+            }
+            else if (num2Length == 4) {
+                num2 = (1000..9999).random()
+            }
+
+            view.testLine1.text = "$num1"
             view.testLine2.text = "$num2"
+
+            if (operator == 1) {
+                view.sign1.text = "+"
+                currentAnswer = (num1 + num2)
+            }
+            else if (operator == 2) {
+                view.sign1.text = "-"
+                currentAnswer = (num1 - num2)
+            }
+            else if (operator == 3) {
+                view.sign1.text = "X"
+                currentAnswer = (num1 * num2)
+            }
+            else if (operator == 4) {
+                view.sign1.text = "÷"
+                currentAnswer = (num1 / num2)
+            }
+
             view.currentCount.text = "$solvedCount / $userProblemsNums" // 현재 문제 수
         }
 
@@ -87,4 +194,3 @@ class TestActivity : AppCompatActivity() {
         timerTask?.cancel()
     }
 }
-
