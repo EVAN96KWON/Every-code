@@ -57,50 +57,40 @@ class TestActivity : AppCompatActivity() {
         var num2 = 0
         var currentAnswer = 0
 
-        if (num1Length == 1) {
-            num1 = (1..10).random()
-        }
-        else if (num1Length == 2) {
-            num1 = (10..99).random()
-        }
-        else if (num1Length == 3) {
-            num1 = (100..999).random()
-        }
-        else if (num1Length == 4) {
-            num1 = (1000..9999).random()
+        when (num1Length) {
+            1 -> num1 = (1..10).random()
+            2 -> num1 = (10..99).random()
+            3 -> num1 = (100..999).random()
+            4 -> num1 = (1000..9999).random()
         }
 
-        if (num2Length == 1) {
-            num2 = (1..10).random()
-        }
-        else if (num2Length == 2) {
-            num2 = (10..99).random()
-        }
-        else if (num2Length == 3) {
-            num2 = (100..999).random()
-        }
-        else if (num2Length == 4) {
-            num2 = (1000..9999).random()
+        when (num2Length) {
+            1 -> num2 = (1..10).random()
+            2 -> num2 = (10..99).random()
+            3 -> num2 = (100..999).random()
+            4 -> num2 = (1000..9999).random()
         }
 
         view.testLine1.text = "$num1"
         view.testLine2.text = "$num2"
 
-        if (operator == 1) {
-            view.sign1.text = "+"
-            currentAnswer = (num1 + num2)
-        }
-        else if (operator == 2) {
-            view.sign1.text = "-"
-            currentAnswer = (num1 - num2)
-        }
-        else if (operator == 3) {
-            view.sign1.text = "X"
-            currentAnswer = (num1 * num2)
-        }
-        else if (operator == 4) {
-            view.sign1.text = "÷"
-            currentAnswer = (num1 / num2)
+        when (operator) {
+            1 -> {
+                view.sign1.text = "+"
+                currentAnswer = (num1 + num2)
+            }
+            2 -> {
+                view.sign1.text = "-"
+                currentAnswer = (num1 - num2)
+            }
+            3 -> {
+                view.sign1.text = "X"
+                currentAnswer = (num1 * num2)
+            }
+            4 -> {
+                view.sign1.text = "÷"
+                currentAnswer = (num1 / num2)
+            }
         }
 
         view.currentCount.text = "$answerCount / $userProblemsNums"
@@ -131,50 +121,40 @@ class TestActivity : AppCompatActivity() {
 
             solvedCount += 1 // 푼 문제 수
 
-            if (num1Length == 1) {
-                num1 = (1..10).random()
-            }
-            else if (num1Length == 2) {
-                num1 = (10..99).random()
-            }
-            else if (num1Length == 3) {
-                num1 = (100..999).random()
-            }
-            else if (num1Length == 4) {
-                num1 = (1000..9999).random()
+            when (num1Length) {
+                1 -> num1 = (1..10).random()
+                2 -> num1 = (10..99).random()
+                3 -> num1 = (100..999).random()
+                4 -> num1 = (1000..9999).random()
             }
 
-            if (num2Length == 1) {
-                num2 = (1..10).random()
-            }
-            else if (num2Length == 2) {
-                num2 = (10..99).random()
-            }
-            else if (num2Length == 3) {
-                num2 = (100..999).random()
-            }
-            else if (num2Length == 4) {
-                num2 = (1000..9999).random()
+            when (num2Length) {
+                1 -> num2 = (1..10).random()
+                2 -> num2 = (10..99).random()
+                3 -> num2 = (100..999).random()
+                4 -> num2 = (1000..9999).random()
             }
 
             view.testLine1.text = "$num1"
             view.testLine2.text = "$num2"
 
-            if (operator == 1) {
-                view.sign1.text = "+"
-                currentAnswer = (num1 + num2)
-            }
-            else if (operator == 2) {
-                view.sign1.text = "-"
-                currentAnswer = (num1 - num2)
-            }
-            else if (operator == 3) {
-                view.sign1.text = "X"
-                currentAnswer = (num1 * num2)
-            }
-            else if (operator == 4) {
-                view.sign1.text = "÷"
-                currentAnswer = (num1 / num2)
+            when (operator) {
+                1 -> {
+                    view.sign1.text = "+"
+                    currentAnswer = (num1 + num2)
+                }
+                2 -> {
+                    view.sign1.text = "-"
+                    currentAnswer = (num1 - num2)
+                }
+                3 -> {
+                    view.sign1.text = "X"
+                    currentAnswer = (num1 * num2)
+                }
+                4 -> {
+                    view.sign1.text = "÷"
+                    currentAnswer = (num1 / num2)
+                }
             }
 
             view.currentCount.text = "$solvedCount / $userProblemsNums" // 현재 문제 수
