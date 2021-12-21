@@ -24,7 +24,7 @@ class ResultActivity : AppCompatActivity() {
         val problemNums = intent.getStringExtra("problem_nums")
         val endTime = intent.getStringExtra("end_time")
 
-        val resultScore: Float = (answerCount!!.toFloat() / problemNums!!.toFloat()) * 100 // = (맞춘 문제 수 / 전체 문제 수)
+        val resultScore: Float = Math.round((answerCount!!.toFloat() / problemNums!!.toFloat()) * 100) / 100f // = (맞춘 문제 수 / 전체 문제 수)
 
         // TextView에 점수 표시
         view.resultComment.text = setComment(resultScore)
