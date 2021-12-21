@@ -31,7 +31,9 @@ class AnalysisManager(private val userLog: String) {
 
     fun getTimes(): List<Float> {
         val timeList = ArrayList<Float>()
-        for (i in userLogList) timeList.add((i[3].toFloat() / i[2].toFloat() * 100).roundToInt() / 100f)
+        for (i in userLogList) {
+            if (i[3] != "0") timeList.add((i[3].toFloat() / i[2].toFloat() * 100).roundToInt() / 100f)
+        }
         return listOf<Float>(
             timeList.maxOrNull()!!,
             (timeList.average() * 100).roundToInt() / 100f,

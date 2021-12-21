@@ -7,15 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.preference.PreferenceManager
 import kr.ac.kumoh.s20170419.everydaymath.databinding.ActivityResultBinding
+import java.time.LocalDate
 import java.util.ArrayList
-
-/**
- *  written by Kwon, 11-29
- *  @author EVAN96KWON
- *  @version 1.0
- *  @see
- *  시험 결과(TestActivity.kt)를 토대로 answerNum 과 testTime 을 채워주세요 !
- */
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var view: ActivityResultBinding
@@ -26,27 +19,21 @@ class ResultActivity : AppCompatActivity() {
         view = ActivityResultBinding.inflate(layoutInflater)
         setContentView(view.root)
 
-        var currentDate = intent.getStringExtra("current_date").toString()
-        val answerCount = intent.getStringExtra("answer_count").toString()
-        val problemNums = intent.getStringExtra("problem_nums").toString()
-        val endTime = intent.getStringExtra("end_time").toString()
+        var currentDate = intent.getStringExtra("current_date")
+        val answerCount = intent.getStringExtra("answer_count")
+        val problemNums = intent.getStringExtra("problem_nums")
+        val endTime = intent.getStringExtra("end_time")
 
-        Log.e(TAG, "넘어온 string : $currentDate $answerCount $problemNums $endTime")
-
-        val sps = PreferenceManager.getDefaultSharedPreferences(this)
-        var userProblemsNums = sps.getString("user_problems_nums", "1")
-
-        val answerNum: Int = 0; // = 맞춘 문제 수
-        val testTime: Int = 0; // = 걸린 시간
         val resultScore: Float = (answerCount!!.toFloat() / problemNums!!.toFloat()) * 100 // = (맞춘 문제 수 / 전체 문제 수)
 
         // TextView에 점수 표시
         view.resultComment.text = setComment(resultScore)
         view.resultScore.text = resultScore.toString() + "점"
+
+        view.btnGotoMain.setOnClickListener { onBackPressed() }
+
         //결과값 userLog.txt에 저장
-        writeResult(resultScore, testTime)
-
-
+        writeResult(answerCount, endTime!!)
     }
 
     @SuppressLint("SetTextI18n")
@@ -61,19 +48,43 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
-    private fun writeResult(resultScore: Float, testTime: Int) {
+    private fun writeResult(answerCount: String, testTime: String) {
+        //get user log
         val userLog = UserLogManager(filesDir).readTextFile()
-
         val tmpList = userLog.split("\n")
         val userLogList = ArrayList<List<String>>()
         for (i in tmpList.indices) userLogList.add(tmpList[i].split(","))
         userLogList.removeAt(userLogList.size - 1)
 
-        // check log size
-        while (userLogList.size < 7) {
-            userLogList.add(0, listOf("2001-01-01","0","10","0"))
+        //get problem nums
+        val sps = PreferenceManager.getDefaultSharedPreferences(this)
+        var userProblemsNums = sps.getString("user_problems_nums", "1")
+
+        // 새로 추가하는 리스트의 날짜가 제일 최근의 것과 같으면 이전의 것을 삭제
+        if (userLogList[userLogList.size - 1][0] == LocalDate.now().toString()) {
+            userLogList.removeAt(userLogList.size - 1)
         }
 
-        UserLogManager(filesDir).writeTextFile(userLog)
+        //add current test result
+        userLogList.add(
+            listOf(
+                LocalDate.now().toString(),
+                answerCount,
+                userProblemsNums.toString(),
+                testTime
+            )
+        )
+
+        // adjust list size
+        while (userLogList.size != 7) {
+            if (userLogList.size > 7) userLogList.removeAt(0)
+            else userLogList.add(0, listOf("2001-01-01","0","11","0"))
+        }
+
+
+        // list to String, and write to log.txt
+        var content = ""
+        for (list in userLogList) content += list.joinToString(",", "", "\n")
+        UserLogManager(filesDir).writeTextFile(content)
     }
 }
