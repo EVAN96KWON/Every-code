@@ -117,8 +117,6 @@ class TestActivity : AppCompatActivity() {
 
 //            view.currentScore.text = "${view.inputAnswer1.text}, $currentAnswer"
 
-            view.testText.text = view.inputAnswer1.text // textview에 edittext값 넣기
-
             solvedCount += 1 // 푼 문제 수
 
             when (num1Length) {

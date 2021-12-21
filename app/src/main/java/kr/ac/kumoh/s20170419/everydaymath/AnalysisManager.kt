@@ -5,14 +5,6 @@ import java.util.*
 import kotlin.math.roundToInt
 
 class AnalysisManager(private val userLog: String) {
-    //            ulm.writeTextFile("2021-11-23,23,40,200\n"
-//                                + "2021-11-24,23,40,340\n"
-//                                + "2021-11-25,23,40,290\n"
-//                                + "2021-11-26,23,40,298\n"
-//                                + "2021-11-27,23,40,600\n"
-//                                + "2021-11-28,23,40,960\n"
-//                                + "2021-11-29,23,40,320\n")
-
     private val userLogList = initList()
 
     private fun initList(): ArrayList<List<String>> {
